@@ -2,9 +2,7 @@ name: Run Tests
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -15,11 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # חייב לבוא לפני כל פקודת git
       - name: Allow git safe directory
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Show files
         run: |
           ls -ltr
-          python3 --version
-          echo "✅ Workflow is working"
+          python --version
+          git status
